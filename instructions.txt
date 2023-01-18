@@ -1,0 +1,8 @@
+Because I've started applications inside docker containsers, so It's not possible to connect to the DB using default
+address and port.
+
+What to do?
+
+1. Docker ps -a -- to find the container id
+2. Docker inspect <container id> -- to find the IP address of the container
+3. in PG admin use url
