@@ -23,7 +23,8 @@ public class RouterConfig {
 
     @Bean
     RouterFunction<ServerResponse> routes(UserHandler handler) {
-        return route(POST("api/v1/users"), handler::create);
+        return route(POST("api/v1/users"), handler::create)
+                .andRoute(GET("api/v1/user/{userId}"), handler::getUserById);
         //return route(GET("/handler/users").and(accept(MediaType.APPLICATION_JSON)), handler::getAllUsers)
                 //.andRoute(GET("/handler/users/{userId}").and(contentType(MediaType.APPLICATION_JSON)), handler::getUserById)
             //    .andRoute(POST("/handler/users").and(accept(MediaType.APPLICATION_JSON)), handler::create)
