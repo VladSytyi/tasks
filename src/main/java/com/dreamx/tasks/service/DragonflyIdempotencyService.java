@@ -1,13 +1,10 @@
 package com.dreamx.tasks.service;
 
 import com.dreamx.tasks.model.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import reactor.core.publisher.Mono;
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.time.Duration;
-import java.util.Map;
 
 public class DragonflyIdempotencyService implements IdempotencyService<User> {
 

@@ -34,6 +34,15 @@ services:
     # network_mode: "host"
     volumes:
       - dragonflydata:/data
+  app:
+    image: 'crud-reactive:latest'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crud-reactive
+    ports:
+      - '8080:8080'
+
 volumes:
   pgadmin:
   dragonflydata:

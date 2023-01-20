@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseConfig {
     @Bean
     public ConfigurationProvider configurationProvider() {
-        var filesPath = Paths.get("src/main/resources");
+        var filesPath = Paths.get(".");
         ConfigFilesProvider configFilesProvider = () -> List.of(Paths.get("application.yaml"));
         ConfigurationSource source = new FilesConfigurationSource(configFilesProvider);
         ImmutableEnvironment environment = new ImmutableEnvironment(filesPath.toString());
