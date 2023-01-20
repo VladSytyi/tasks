@@ -2,9 +2,9 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-	CREATE USER demouser WITH PASSWORD 'demopass';
-	CREATE DATABASE demodb;
-	GRANT ALL PRIVILEGES ON DATABASE demo TO demo;
+	CREATE USER $DEMO_USER WITH PASSWORD "$DEMO_PASSWORD";
+	CREATE DATABASE $POSTGRES_DB;
+	GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $DEMO_USER;
 	create schema if not exists $SCHEMA;
 	create table $SCHEMA.users (
 	    id serial primary key,
@@ -12,8 +12,6 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
         lastname text not null,
         phone text not null,
         email text not null,
-        salt varchar not null,
-        password text not null,
         created_at timestamp not null default now(),
         updated_at timestamp not null default now()
     );

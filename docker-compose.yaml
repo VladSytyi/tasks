@@ -6,9 +6,10 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - SCHEMA=demo
+      - SCHEMA=tasks
       - POSTGRES_DB=demo
-      - P
+      - DEMO_USER=demo
+      - DEMO_PASSWORD=demo
     ports:
       - '5432:5432'
     volumes:

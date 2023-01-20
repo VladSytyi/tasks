@@ -21,7 +21,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public Mono<User> findById(Long id) {
-        return Mono.just(new User(1L, "John", "Doe", "john@mail.com", "","salt", LocalDateTime.now(), LocalDateTime.now()));
+        return Mono.just(new User(1L, "John", "Doe", "john@mail.com", "", LocalDateTime.now(), LocalDateTime.now()));
     }
 
     @Override
