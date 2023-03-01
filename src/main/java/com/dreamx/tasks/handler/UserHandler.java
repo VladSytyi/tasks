@@ -41,6 +41,21 @@ public class UserHandler {
                 .subscribeOn(SCHEDULER);
     }
 
+    public Mono<ServerResponse> findAll(ServerRequest request) {
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(userService.getAllUsers(), User.class)
+                .switchIfEmpty(ServerResponse.notFound().build())
+                .subscribeOn(SCHEDULER);
+    }
+
+    public Mono<ServerResponse> update(ServerRequest request) {
+        Long userId = Long.valueOf(request.pathVariable("userId"));
+        return request.bodyToMono(User.class)
+                .flatMap(user -> userService.updateUserById(userId, user))
+                .flatMap(this::successResponse)
+                .switchIfEmpty(ServerResponse.notFound().build())
+                .subscribeOn(SCHEDULER);
+    }
+
     private Mono<ServerResponse> successResponse(User user) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(user);
     }

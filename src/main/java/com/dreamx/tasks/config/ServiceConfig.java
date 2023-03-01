@@ -13,16 +13,19 @@ public class ServiceConfig {
 
     private final JedisConfig jedisConfig;
     private final BaseConfig baseConfig;
+    private final RepositoryConfig repositoryConfig;
 
-    public ServiceConfig(JedisConfig jedisConfig, BaseConfig baseConfig) {
+    public ServiceConfig(JedisConfig jedisConfig, BaseConfig baseConfig, RepositoryConfig repositoryConfig) {
         this.jedisConfig = jedisConfig;
         this.baseConfig = baseConfig;
+        this.repositoryConfig = repositoryConfig;
     }
 
     @Bean
     public UserService userService() {
         return new DefaultUserService(
-            idempotencyService()
+                idempotencyService(),
+                repositoryConfig.userRepository()
         );
     }
 
@@ -35,12 +38,6 @@ public class ServiceConfig {
                 idempotentCacheTtl
         );
     }
-
-
-
-
-
-
 
 
 }
